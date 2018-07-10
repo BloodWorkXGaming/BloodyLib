@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bloodylib",
+  "name": "BloodyLib",
+  "description": "Library mod that is used in mods by BloodWorkXGaming.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["BloodWorkXGaming"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

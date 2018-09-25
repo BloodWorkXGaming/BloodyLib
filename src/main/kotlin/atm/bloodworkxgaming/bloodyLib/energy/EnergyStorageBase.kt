@@ -13,11 +13,11 @@ open class EnergyStorageBase(capacity: Int, maxReceive: Int, maxExtract: Int, en
     constructor(capacity: Int, maxReceive: Int, maxExtract: Int, serializationState: NBTSerializationState?) : this(capacity, maxReceive, maxExtract, 0, serializationState)
 
     override fun extractEnergy(maxExtract: Int, simulate: Boolean): Int {
-        return super.extractEnergy(maxExtract, simulate).apply { serializationState?.scheduleUpdate() }
+        return super.extractEnergy(maxExtract, simulate).apply { if (this > 0) serializationState?.scheduleUpdate() }
     }
 
     override fun receiveEnergy(maxReceive: Int, simulate: Boolean): Int {
-        return super.receiveEnergy(maxReceive, simulate).apply { serializationState?.scheduleUpdate() }
+        return super.receiveEnergy(maxReceive, simulate).apply { if (this > 0) serializationState?.scheduleUpdate() }
     }
 
     fun extractEnergyInternal(maxExtract: Int, simulate: Boolean): Int {

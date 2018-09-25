@@ -26,6 +26,10 @@ object PacketHandler {
         INSTANCE.registerMessage(messageHandler, requestMessageType, id++, side)
     }
 
+    /**
+     * Using coroutines here for a about 4 times speed improvement over not using them.
+     * Basically a fire and forget without spawning a ton of threads
+     */
     fun sendToAllAround(message: IMessage, te: TileEntity, range: Int = 64) = async {
         val pos = te.pos
         synchronized(INSTANCE) {

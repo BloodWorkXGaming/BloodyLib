@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.41"
+    id "org.jetbrains.kotlin.jvm" version "1.2.51"
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -67,5 +67,11 @@ processResources {
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
     }
 }

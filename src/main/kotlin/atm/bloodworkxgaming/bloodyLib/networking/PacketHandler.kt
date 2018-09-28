@@ -3,6 +3,7 @@ package atm.bloodworkxgaming.bloodyLib.networking
 import atm.bloodworkxgaming.bloodyLib.BloodyLib
 import atm.bloodworkxgaming.bloodyLib.tile.TileEntityBase
 import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import net.minecraft.tileentity.TileEntity
 import net.minecraftforge.fml.common.network.NetworkRegistry
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint
@@ -30,7 +31,7 @@ object PacketHandler {
      * Using coroutines here for a about 4 times speed improvement over not using them.
      * Basically a fire and forget without spawning a ton of threads
      */
-    fun sendToAllAround(message: IMessage, te: TileEntity, range: Int = 64) = async {
+    fun sendToAllAround(message: IMessage, te: TileEntity, range: Int = 64) = launch {
         val pos = te.pos
         synchronized(INSTANCE) {
             INSTANCE.sendToAllAround(message, TargetPoint(te.world.provider.dimension, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), range.toDouble()))

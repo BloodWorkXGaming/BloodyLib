@@ -1,5 +1,6 @@
 package atm.bloodworkxgaming.bloodyLib.tile
 
+import atm.bloodworkxgaming.bloodyLib.BloodyLibConfig
 import net.minecraft.util.ITickable
 
 abstract class TileEntityTickingBase : TileEntityBase(), ITickable {
@@ -11,10 +12,10 @@ abstract class TileEntityTickingBase : TileEntityBase(), ITickable {
         if (world.isRemote) return
 
         val time = world.worldTime
-        if (sendUpdateScheduled && time - lastNBTUpdate > 5) {
+        if (sendUpdateScheduled && time - lastNBTUpdate > BloodyLibConfig.incrementalNbtUpdateInterval) {
 
             sendUpdate(
-                    if (time - lastFullNBTUpdate > 40) {
+                    if (time - lastFullNBTUpdate > BloodyLibConfig.fullNbtUpdateInterval) {
                         lastFullNBTUpdate = time
                         true
                     } else {
@@ -32,7 +33,7 @@ abstract class TileEntityTickingBase : TileEntityBase(), ITickable {
 
     abstract fun updateTickRemote()
 
-    fun scheduleUpdate(){
+    fun scheduleUpdate() {
         sendUpdateScheduled = true
     }
 

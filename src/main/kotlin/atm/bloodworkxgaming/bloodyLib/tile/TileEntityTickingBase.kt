@@ -4,7 +4,7 @@ import atm.bloodworkxgaming.bloodyLib.BloodyLibConfig
 import net.minecraft.util.ITickable
 
 abstract class TileEntityTickingBase : TileEntityBase(), ITickable {
-    protected var sendUpdateScheduled: Boolean = false
+    protected var sendUpdateScheduled: Boolean = true
     protected var lastNBTUpdate: Long = 0
     protected var lastFullNBTUpdate: Long = 0
     override fun update() {

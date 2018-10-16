@@ -34,6 +34,7 @@ object PacketHandler {
     fun sendToAllAround(message: IMessage, te: TileEntity, range: Int = 64) = launch {
         val pos = te.pos
         synchronized(INSTANCE) {
+            println("Sending to all around at pos $pos")
             INSTANCE.sendToAllAround(message, TargetPoint(te.world.provider.dimension, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), range.toDouble()))
         }
     }

@@ -46,9 +46,13 @@ class MessageNBTUpdate : IMessage {
         @SideOnly(Side.CLIENT)
         override fun onMessage(msg: MessageNBTUpdate, ctx: MessageContext): IMessage? {
             Minecraft.getMinecraft().addScheduledTask {
+                println("Message 1")
                 val entity = Minecraft.getMinecraft().player.entityWorld.getTileEntity(BlockPos(msg.x, msg.y, msg.z)) as? TileEntityBase ?: return@addScheduledTask
+                println("Message 2")
                 val tag = msg.tag ?: return@addScheduledTask
+                println("Message 3")
                 entity.readClientDataFromNBT(tag)
+                println("Message 3")
             }
             return null
         }
